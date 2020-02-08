@@ -61,11 +61,9 @@ class TransactionController extends Controller
       ]);
       $transaction->save();
 
-      $master_slot = new master_slot([
-        'slots_name' => $request->input('vehicle_no'),
-        'slots_name' => $request->input('vehicle_type'),
-        'id_transaction' => $transaction->id
-      ]);
+      $master_slot = master_slot::find($slot[0]->id);
+      $master_slot->slots_flag = '1';
+      $master_slot->id_transaction = $transaction->id;
       $master_slot->save();
 
       return redirect('/transaction')->with('success', 'Transaction saved!');
