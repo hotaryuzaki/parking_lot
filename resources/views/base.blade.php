@@ -87,7 +87,7 @@
           <div class="links">
             <a href={{ url('/') }}>Dashboard</a>
             <a href={{ url('/transaction/create') }}>Parking</a>
-            <a href="https://laravel-news.com">Transaction</a>
+            <a href={{ url('/transaction') }}>Transaction</a>
             <a href="https://blog.laravel.com">Setup</a>
           </div>
 

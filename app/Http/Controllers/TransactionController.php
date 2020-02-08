@@ -106,7 +106,6 @@ class TransactionController extends Controller
       $request->validate([
         'vehicle_no'=>'required',
         'vehicle_color'=>'required',
-        'entry_date'=>'required',
         'id_slot'=>'required'
       ]);
 
@@ -115,14 +114,12 @@ class TransactionController extends Controller
       $transaction->vehicle_type = $request->input('vehicle_type');
       $transaction->vehicle_brand = $request->input('vehicle_brand');
       $transaction->vehicle_color = $request->input('vehicle_color');
-      $transaction->entry_date = $request->input('entry_date');
-      $transaction->out_date = $request->input('out_date');
       $transaction->id_slot = $request->input('id_slot');
       $transaction->payment_type = $request->input('payment_type');
       $transaction->parking_bill = $request->input('parking_bill');
       $transaction->save();
 
-      return redirect('/contacts')->with('success', 'Contact updated!');
+      return redirect('/transaction')->with('success', 'Transaction updated!');
     }
 
     /**

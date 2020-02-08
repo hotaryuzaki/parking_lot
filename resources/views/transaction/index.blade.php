@@ -15,6 +15,8 @@
             <td>Entry Date</td>
             <td>Out Date</td>
             <td>ID Slot</td>
+            <td>Payment Type</td>
+            <td>Parking Bill</td>
             <td colspan = 2>Actions</td>
           </tr>
       </thead>
@@ -29,6 +31,8 @@
               <td>{{$data->entry_date}}</td>
               <td>{{$data->out_date}}</td>
               <td>{{$data->id_slot}}</td>
+              <td>{{$data->payment_type}}</td>
+              <td>{{$data->parking_bill}}</td>
               <td>
                   <a href="{{ route('transaction.edit',$data->id)}}" class="btn btn-primary">Edit</a>
               </td>
