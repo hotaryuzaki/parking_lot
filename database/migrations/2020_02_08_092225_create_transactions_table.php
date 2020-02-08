@@ -21,10 +21,10 @@ class CreateTransactionsTable extends Migration
             $table->string('vehicle_brand', 50);
             $table->string('vehicle_color', 50);
             $table->dateTime('entry_date');
-            $table->dateTime('out_date');
+            $table->dateTime('out_date')->nullable();
             $table->bigInteger('id_slot');
-            $table->string('payment_type', 50);
-            $table->integer('parking_bill');
+            $table->string('payment_type', 50)->nullable();
+            $table->integer('parking_bill')->nullable();
         });
     }
 

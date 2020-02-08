@@ -18,7 +18,7 @@ class CreateMasterSlotsTable extends Migration
             $table->timestamps();
             $table->string('slots_name', 100);
             $table->enum('slots_flag', ['0', '1']);
-            $table->bigInteger('id_transaction');
+            $table->bigInteger('id_transaction')->nullable();
         });
     }
 

@@ -14,7 +14,9 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        //
+        $transaction = transaction::all();
+
+        return view('transaction.index', compact('transaction'));
     }
 
     /**
@@ -35,6 +37,10 @@ class TransactionController extends Controller
      */
     public function store(Request $request)
     {
+      // $slot = DB::select('select * from master_slots where slots_flag = 0', [1]);
+
+      //   return view('user.index', ['users' => $users]);
+
       $request->validate([
         'vehicle_no'=>'required',
         'vehicle_color'=>'required'
@@ -46,9 +52,10 @@ class TransactionController extends Controller
         'vehicle_brand' => $request->get('vehicle_brand'),
         'vehicle_color' => $request->get('vehicle_color'),
         'entry_date' => date('Y-m-d H:i:s'),
-        'id_slot' => $request->get('id_slot')
+        'id_slot' => 1
       ]);
       $transaction->save();
+
       return redirect('/transaction')->with('success', 'Transaction saved!');
     }
 
@@ -94,6 +101,9 @@ class TransactionController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $transaction = transaction::find($id);
+      $transaction->delete();
+
+      return redirect('/transaction')->with('success', 'Transaction deleted!');
     }
 }
