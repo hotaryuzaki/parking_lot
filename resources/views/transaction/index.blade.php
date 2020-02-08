@@ -19,21 +19,21 @@
           </tr>
       </thead>
       <tbody>
-          @foreach($transaction as $trans)
+          @foreach($transaction as $data)
           <tr>
-              <td>{{$trans->id}}</td>
-              <td>{{$trans->vehicle_no}}</td>
-              <td>{{$trans->vehicle_type}}</td>
-              <td>{{$trans->vehicle_brand}}</td>
-              <td>{{$trans->vehicle_color}}</td>
-              <td>{{$trans->entry_date}}</td>
-              <td>{{$trans->out_date}}</td>
-              <td>{{$trans->id_slot}}</td>
+              <td>{{$data->id}}</td>
+              <td>{{$data->vehicle_no}}</td>
+              <td>{{$data->vehicle_type}}</td>
+              <td>{{$data->vehicle_brand}}</td>
+              <td>{{$data->vehicle_color}}</td>
+              <td>{{$data->entry_date}}</td>
+              <td>{{$data->out_date}}</td>
+              <td>{{$data->id_slot}}</td>
               <td>
-                  <a href="{{ route('transaction.edit',$trans->id)}}" class="btn btn-primary">Edit</a>
+                  <a href="{{ route('transaction.edit',$data->id)}}" class="btn btn-primary">Edit</a>
               </td>
               <td>
-                  <form action="{{ route('transaction.destroy', $trans->id)}}" method="post">
+                  <form action="{{ route('transaction.destroy', $data->id)}}" method="post">
                     @csrf
                     @method('DELETE')
                     <button class="btn btn-danger" type="submit">Delete</button>

@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Transaction;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
+use App\transaction;
+use App\master_slot;
 
 class TransactionController extends Controller
 {
@@ -14,9 +17,9 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        $transaction = transaction::all();
+      $transaction = transaction::all();
 
-        return view('transaction.index', compact('transaction'));
+      return view('transaction.index', compact('transaction'));
     }
 
     /**
@@ -37,9 +40,11 @@ class TransactionController extends Controller
      */
     public function store(Request $request)
     {
-      // $slot = DB::select('select * from master_slots where slots_flag = 0', [1]);
-
-      //   return view('user.index', ['users' => $users]);
+      $slot = DB::table('master_slots')
+                ->where('slots_flag', '0')
+                ->orderBy('slots_name', 'asc')
+                ->limit(1)
+                ->get();
 
       $request->validate([
         'vehicle_no'=>'required',
@@ -47,14 +52,21 @@ class TransactionController extends Controller
       ]);
 
       $transaction = new transaction([
-        'vehicle_no' => $request->get('vehicle_no'),
-        'vehicle_type' => $request->get('vehicle_type'),
-        'vehicle_brand' => $request->get('vehicle_brand'),
-        'vehicle_color' => $request->get('vehicle_color'),
+        'vehicle_no' => $request->input('vehicle_no'),
+        'vehicle_type' => $request->input('vehicle_type'),
+        'vehicle_brand' => $request->input('vehicle_brand'),
+        'vehicle_color' => $request->input('vehicle_color'),
         'entry_date' => date('Y-m-d H:i:s'),
-        'id_slot' => 1
+        'id_slot' => $slot[0]->id
       ]);
       $transaction->save();
+
+      $master_slot = new master_slot([
+        'slots_name' => $request->input('vehicle_no'),
+        'slots_name' => $request->input('vehicle_type'),
+        'id_transaction' => $transaction->id
+      ]);
+      $master_slot->save();
 
       return redirect('/transaction')->with('success', 'Transaction saved!');
     }
@@ -78,7 +90,8 @@ class TransactionController extends Controller
      */
     public function edit($id)
     {
-        //
+      $transaction = transaction::find($id);
+      return view('transaction.edit', compact('transaction')); 
     }
 
     /**
@@ -90,7 +103,26 @@ class TransactionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $request->validate([
+        'vehicle_no'=>'required',
+        'vehicle_color'=>'required',
+        'entry_date'=>'required',
+        'id_slot'=>'required'
+      ]);
+
+      $transaction = transaction::find($id);
+      $transaction->vehicle_no =  $request->input('vehicle_no');
+      $transaction->vehicle_type = $request->input('vehicle_type');
+      $transaction->vehicle_brand = $request->input('vehicle_brand');
+      $transaction->vehicle_color = $request->input('vehicle_color');
+      $transaction->entry_date = $request->input('entry_date');
+      $transaction->out_date = $request->input('out_date');
+      $transaction->id_slot = $request->input('id_slot');
+      $transaction->payment_type = $request->input('payment_type');
+      $transaction->parking_bill = $request->input('parking_bill');
+      $transaction->save();
+
+      return redirect('/contacts')->with('success', 'Contact updated!');
     }
 
     /**

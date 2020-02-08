@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
+use App\master_slot;
 
 class MasterSlotController extends Controller
 {
@@ -13,7 +16,17 @@ class MasterSlotController extends Controller
      */
     public function index()
     {
-        //
+      $slot = master_slot::all();
+
+      return view('slot.index', compact('slot'));
+
+      // $slot = DB::table('master_slots')
+      //           ->where('slots_flag', '0')
+      //           ->orderBy('slots_name', 'asc')
+      //           ->limit(1)
+      //           ->get();
+
+      // return view('slot.index', compact('slot'));
     }
 
     /**
