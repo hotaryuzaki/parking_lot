@@ -1,5 +1,5 @@
-**App Name:**   Parking Lot
-**Framework:** PHP Laravel
+**App Name:**   Parking Lot\
+**Framework:** PHP Laravel\
 **Author:** Ahmad Amri Sanusi
 
 ## Server Requirements
