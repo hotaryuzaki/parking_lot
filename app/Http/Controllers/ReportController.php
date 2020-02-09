@@ -20,10 +20,10 @@ class ReportController extends Controller
       $parameter = $request->input('parameter');
 
       if ($report_type === 'vehicle_color') {
-        $transaction = transaction::where('vehicle_color', $parameter)->get();
+        $transaction = transaction::where('vehicle_color', $parameter)->orderBy('id', 'desc')->get();
 
       } else if ($report_type === 'vehicle_no') {
-        $transaction = transaction::where('vehicle_no', $parameter)->get();
+        $transaction = transaction::where('vehicle_no', $parameter)->orderBy('id', 'desc')->get();
       }
       
       return view('report.report', compact('transaction')); 

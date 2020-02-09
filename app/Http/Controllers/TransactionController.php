@@ -16,7 +16,7 @@ class TransactionController extends Controller
      */
     public function index()
     {
-      $transaction = transaction::all();
+      $transaction = transaction::orderBy('id', 'desc')->get();
 
       return view('transaction.index', compact('transaction'));
     }
@@ -95,7 +95,7 @@ class TransactionController extends Controller
     public function edit($id)
     {
       $transaction = transaction::find($id);
-      
+
       return view('transaction.edit', compact('transaction')); 
     }
 

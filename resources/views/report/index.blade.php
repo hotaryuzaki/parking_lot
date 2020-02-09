@@ -26,7 +26,7 @@
         </div>
         <div class="form-group">
           <label for="parameter">Parameter:</label>
-          <input type="text" class="form-control" name="parameter"/>
+          <input type="text" class="form-control" name="parameter" required />
         </div>
 
         <button type="submit" class="btn btn-primary">Get Report</button>

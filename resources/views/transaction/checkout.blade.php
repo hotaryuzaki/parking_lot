@@ -68,7 +68,7 @@
       <form id="find_transaction">
         <div class="form-group">
           <label for="find_no">Vehicle No:</label>
-          <input type="text" class="form-control" name="find_no" id="find_no" />
+          <input type="text" class="form-control" name="find_no" id="find_no" required />
         </div>
         <button type="submit" class="btn btn-primary">Check Vehicle</button>
       </form>

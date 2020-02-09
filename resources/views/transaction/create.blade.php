@@ -18,8 +18,8 @@
       <form method="post" action="{{ route('transaction.store') }}">
         @csrf
         <div class="form-group">    
-          <label for="vehicle_no">Vehicle No:</label>
-          <input type="text" class="form-control" name="vehicle_no"/>
+          <label for="vehicle_no">Vehicle No <span class='text-danger'>*</span>:</label>
+          <input type="text" class="form-control" name="vehicle_no" required />
         </div>
         <div class="form-group">
           <label for="vehicle_type">Vehicle Type:</label>
@@ -30,8 +30,8 @@
           <input type="text" class="form-control" name="vehicle_brand"/>
         </div>
         <div class="form-group">
-          <label for="vehicle_color">Vehicle Color:</label>
-          <input type="text" class="form-control" name="vehicle_color"/>
+          <label for="vehicle_color">Vehicle Color <span class='text-danger'>*</span>:</label>
+          <input type="text" class="form-control" name="vehicle_color" required />
         </div>
         <button type="submit" class="btn btn-primary">Add Vehicle</button>
       </form>

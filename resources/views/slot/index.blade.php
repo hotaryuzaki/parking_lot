@@ -50,8 +50,8 @@
             <td>
               <?php
                 echo $data->slots_flag
-                  ? "<div class='text-danger' role='alert'>Terisi</div>"
-                  : "<div class='text-success' role='alert'>Kosong</div>";
+                  ? "<div class='text-danger'>Terisi</div>"
+                  : "<div class='text-success'>Kosong</div>";
               ?>
             </td>
             <td>{{$data->id_transaction}}</td>
