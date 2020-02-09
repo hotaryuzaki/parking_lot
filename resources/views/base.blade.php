@@ -94,6 +94,7 @@
             <a href={{ url('/transaction/create') }}>Parking</a>
             <a href={{ url('/transaction/checkout') }}>Checkout</a>
             <a href={{ url('/transaction') }}>Transaction</a>
+            <a href={{ url('/report') }}>Report</a>
             <a href={{ url('/setup-parking/1/edit') }}>Setup</a>
           </div>
 

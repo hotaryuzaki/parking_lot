@@ -14,6 +14,8 @@
 Route::get('/', 'MasterSlotController@index');
 Route::resource('setup-parking', 'SetupParkingController');
 Route::resource('slot', 'MasterSlotController');
-Route::view('/transaction/checkout', 'transaction.checkout');
-Route::post('/transaction/out', 'TransactionController@checkout');
+Route::view('transaction/checkout', 'transaction.checkout');
+Route::post('transaction/out', 'TransactionController@checkout');
 Route::resource('transaction', 'TransactionController');
+Route::view('report', 'report.index');
+Route::post('report/get', 'ReportController@getReport');
