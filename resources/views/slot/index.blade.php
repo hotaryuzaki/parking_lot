@@ -4,7 +4,7 @@
 <div class="row">
   <div class="col-sm-8 offset-sm-2 main">
     <h1 class="title">Dashboard</h1>
-    
+
     @if ($errors->any())
       <div class="alert alert-danger">
         <ul>
@@ -37,9 +37,8 @@
           <td>ID</td>
           <td>Slots Name</td>
           <td>Slots Flag</td>
-          <td>ID slot</td>
+          <td>ID Transaction</td>
           <td>Vehicle No</td>
-          <td colspan = 2>Actions</td>
         </tr>
       </thead>
       
@@ -48,19 +47,15 @@
           <tr>
             <td>{{$data->id}}</td>
             <td>{{$data->slots_name}}</td>
-            <td>{{$data->slots_flag ? 'Terisi' : 'Kosong'}}</td>
+            <td>
+              <?php
+                echo $data->slots_flag
+                  ? "<div class='text-danger' role='alert'>Terisi</div>"
+                  : "<div class='text-success' role='alert'>Kosong</div>";
+              ?>
+            </td>
             <td>{{$data->id_transaction}}</td>
             <td>{{$data->vehicle_no}}</td>
-            <td>
-              <a href="{{ route('slot.edit',$data->id)}}" class="btn btn-primary">Edit</a>
-            </td>
-            <td>
-              <form action="{{ route('slot.destroy', $data->id)}}" method="post">
-                @csrf
-                @method('DELETE')
-                <button class="btn btn-danger" type="submit">Delete</button>
-              </form>
-            </td>
           </tr>
         @endforeach
       </tbody>

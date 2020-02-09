@@ -81,7 +81,7 @@ class TransactionController extends Controller
     public function show($vehicle_no)
     {
       $plat = htmlentities($vehicle_no);
-      $transaction = transaction::where('vehicle_no', $plat)->get();
+      $transaction = transaction::where('vehicle_no', $plat)->whereNull('out_date')->get();
       
       return response()->json(json_encode($transaction));
     }
@@ -150,22 +150,24 @@ class TransactionController extends Controller
     public function checkout(Request $request)
     {
       $request->validate([
+        'id'=>'required',
+        'id_slot'=>'required',
         'out_date'=>'required',
         'payment_type'=>'required',
         'parking_bill'=>'required'
       ]);
 
-      // $transaction = transaction::find($id);
-      // $transaction->vehicle_no =  $request->input('vehicle_no');
-      // $transaction->vehicle_type = $request->input('vehicle_type');
-      // $transaction->vehicle_brand = $request->input('vehicle_brand');
-      // $transaction->vehicle_color = $request->input('vehicle_color');
-      // $transaction->id_slot = $request->input('id_slot');
-      // $transaction->payment_type = $request->input('payment_type');
-      // $transaction->parking_bill = $request->input('parking_bill');
-      // $transaction->save();
+      $transaction = transaction::find($request->input('id'));
+      $transaction->id_slot =  $request->input('id_slot');
+      $transaction->out_date =  $request->input('out_date');
+      $transaction->payment_type = $request->input('payment_type');
+      $transaction->parking_bill = $request->input('parking_bill');
+      $transaction->save();
 
-      // return redirect('/transaction')->with('success', 'Transaction updated!');
-      return response()->json($request->input('parking_bill'));
+      $master_slot = master_slot::find($request->input('id_slot'));
+      $master_slot->slots_flag = '0';
+      $master_slot->save();
+
+      return redirect('/')->with('success', 'Vehicle checkout success!');
     }
 }

@@ -36,11 +36,10 @@
         <div class="form-group">
             <label for="out_date_disabled">Out Date:</label>
             <input type="text" class="form-control" name="out_date_disabled" id="out_date_disabled" disabled="" />
-            <input type="hidden" name="out_date" id="out_date" />
         </div>
         <div class="form-group">
-            <label for="id_slot">ID Slot:</label>
-            <input type="text" class="form-control" name="id_slot" id="id_slot" disabled="" />
+            <label for="id_slot_disabled">ID Slot:</label>
+            <input type="text" class="form-control" name="id_slot_disabled" id="id_slot_disabled" disabled="" />
         </div>
         <div class="form-group">
             <label for="parking_time">Parking Time:</label>
@@ -55,6 +54,10 @@
               <option value="flazz">flazz</option>
             </select>
         </div>
+        <input type="hidden" name="id" id="id" />
+        <input type="hidden" name="id_slot" id="id_slot" />
+        <input type="hidden" name="out_date" id="out_date" />
+
         <div class="form-group">
             <label for="parking_bill">Parking Bill:</label>
             <input type="text" class="form-control" name="parking_bill" id="parking_bill"/>
@@ -118,9 +121,11 @@
           $('#entry_date').val(entrydatePhp);
           $('#out_date_disabled').val(outdatePhp);
           $('#out_date').val(outdatePhp);
+          $('#id_slot_disabled').val(trans[0].id_slot);
           $('#id_slot').val(trans[0].id_slot);
           $('#parking_time').val(diffHr);
           $('#parking_bill').val(bill);
+          $('#id').val(trans[0].id);
         } else {
           $('#error-msg').text("Vehicle not found!");
           $('#error-div').show();
@@ -144,7 +149,6 @@
       data: post,
       success: function(data) {
         var checkout = JSON.parse(data);
-        console.log(checkout);
 
         // if (trans[0]) {
         // }

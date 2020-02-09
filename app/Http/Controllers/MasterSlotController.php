@@ -18,7 +18,13 @@ class MasterSlotController extends Controller
     {
       $master_slots = DB::table('master_slots')
                       ->leftJoin('transactions', 'master_slots.id_transaction', '=', 'transactions.id')
-                      ->get();
+                      ->get([
+                        'master_slots.id',
+                        'master_slots.slots_name',
+                        'master_slots.slots_flag',
+                        'master_slots.id_transaction',
+                        'transactions.vehicle_no'
+                      ]);
 
       return view('slot.index', compact('master_slots'));
     }
