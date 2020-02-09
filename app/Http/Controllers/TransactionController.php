@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -139,5 +138,34 @@ class TransactionController extends Controller
       $transaction->delete();
 
       return redirect('/transaction')->with('success', 'Transaction deleted!');
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function checkout(Request $request)
+    {
+      $request->validate([
+        'out_date'=>'required',
+        'payment_type'=>'required',
+        'parking_bill'=>'required'
+      ]);
+
+      // $transaction = transaction::find($id);
+      // $transaction->vehicle_no =  $request->input('vehicle_no');
+      // $transaction->vehicle_type = $request->input('vehicle_type');
+      // $transaction->vehicle_brand = $request->input('vehicle_brand');
+      // $transaction->vehicle_color = $request->input('vehicle_color');
+      // $transaction->id_slot = $request->input('id_slot');
+      // $transaction->payment_type = $request->input('payment_type');
+      // $transaction->parking_bill = $request->input('parking_bill');
+      // $transaction->save();
+
+      // return redirect('/transaction')->with('success', 'Transaction updated!');
+      return response()->json($request->input('parking_bill'));
     }
 }

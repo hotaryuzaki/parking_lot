@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\master_slot;
 
 class transaction extends Model
 {
@@ -17,4 +18,8 @@ class transaction extends Model
     'payment_type',
     'parking_bill'
   ];
+
+  public function master_slot() {
+    return $this->hasOne('App\master_slot', 'id_transaction');
+  }
 }

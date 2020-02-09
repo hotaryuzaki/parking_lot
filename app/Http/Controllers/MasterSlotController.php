@@ -1,11 +1,11 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use App\master_slot;
+use App\transaction;
 
 class MasterSlotController extends Controller
 {
@@ -16,17 +16,11 @@ class MasterSlotController extends Controller
      */
     public function index()
     {
-      $slot = master_slot::all();
+      $master_slots = DB::table('master_slots')
+                      ->leftJoin('transactions', 'master_slots.id_transaction', '=', 'transactions.id')
+                      ->get();
 
-      return view('slot.index', compact('slot'));
-
-      // $slot = DB::table('master_slots')
-      //           ->where('slots_flag', '0')
-      //           ->orderBy('slots_name', 'asc')
-      //           ->limit(1)
-      //           ->get();
-
-      // return view('slot.index', compact('slot'));
+      return view('slot.index', compact('master_slots'));
     }
 
     /**
