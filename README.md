@@ -23,8 +23,8 @@ However, if you are not using Homestead, you will need to make sure your server 
 1. Laravel utilizes [Composer](https://getcomposer.org/) to manage its dependencies. So, before using Laravel, make sure you have Composer installed on your machine.
 2. Extract application folder, put in your server (ex: htdocs folder)
 3. Import database
-4. create project:
-    laravel new parking_lot
+4. open terminal and run:
+    `php artisan serve`
 
 6. 
 7. 
