@@ -1,3 +1,7 @@
+@php
+  $setup = globalSetup();
+@endphp
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -82,7 +86,7 @@
       <div class="flex-center position-ref full-height">
         <div class="content">
           <div class="appname m-b-md">
-            Warung Parking
+            {{ $setup->parking_name }}
           </div>
 
           <div class="links">
@@ -90,7 +94,7 @@
             <a href={{ url('/transaction/create') }}>Parking</a>
             <a href={{ url('/transaction/checkout') }}>Checkout</a>
             <a href={{ url('/transaction') }}>Transaction</a>
-            <a href={{ url('/setupparking') }}>Setup</a>
+            <a href={{ url('/setup-parking/1/edit') }}>Setup</a>
           </div>
 
           @yield('main')

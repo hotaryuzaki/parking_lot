@@ -95,6 +95,7 @@ class TransactionController extends Controller
     public function edit($id)
     {
       $transaction = transaction::find($id);
+      
       return view('transaction.edit', compact('transaction')); 
     }
 
@@ -168,6 +169,7 @@ class TransactionController extends Controller
       $master_slot->slots_flag = '0';
       $master_slot->save();
 
-      return redirect('/')->with('success', 'Vehicle checkout success!');
+      $response = array("status" => "success");
+      return response()->json(json_encode($response));
     }
 }

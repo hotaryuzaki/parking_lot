@@ -149,9 +149,9 @@
       data: post,
       success: function(data) {
         var checkout = JSON.parse(data);
-
-        // if (trans[0]) {
-        // }
+        if (checkout.status === 'success') {
+          window.location.replace("{{ url('/') }}");
+        }
       }
     });
   });
