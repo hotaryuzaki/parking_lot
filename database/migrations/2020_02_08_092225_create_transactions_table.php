@@ -17,8 +17,8 @@ class CreateTransactionsTable extends Migration
             $table->bigIncrements('id');
             $table->timestamps();
             $table->string('vehicle_no', 50);
-            $table->string('vehicle_type', 50);
-            $table->string('vehicle_brand', 50);
+            $table->string('vehicle_type', 50)->nullable();
+            $table->string('vehicle_brand', 50)->nullable();
             $table->string('vehicle_color', 50);
             $table->dateTime('entry_date');
             $table->dateTime('out_date')->nullable();

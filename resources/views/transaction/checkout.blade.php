@@ -138,8 +138,6 @@
     e.preventDefault();
     var post = $(this).serialize();
 
-    console.log(post);
-
     $.ajax({
       url: "{{ url('/transaction/out') }}",
       type: "POST",

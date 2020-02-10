@@ -86,7 +86,7 @@
       <div class="flex-center position-ref full-height">
         <div class="content">
           <div class="appname m-b-md">
-            {{ $setup->parking_name }}
+            {{ $setup ? $setup->parking_name : 'Parking Name'}}
           </div>
 
           <div class="links">

@@ -5,17 +5,16 @@ namespace Tests\Feature;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class ExampleTest extends TestCase
+class DashboardTest extends TestCase
 {
     /**
      * A basic test example.
      *
      * @return void
      */
-    public function testBasicTest()
+    public function testDashboard()
     {
         $response = $this->get('/');
-
-        $response->assertStatus(200);
+        $this->assertRegexp('/Parking/', $response->getContent()); // CHECK PAGE CONTENT IF PAGE IS SUCCESSFULLY ACCESS
     }
 }
