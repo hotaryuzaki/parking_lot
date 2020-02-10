@@ -13,7 +13,7 @@ class SetupParkingSeeder extends Seeder
     {
         DB::table('setup_parkings')->insert([
             'parking_name' => 'Warung Parking',
-            'parking_slots' => 6,
+            'parking_slots' => 0,
         ]);
     }
 }
